@@ -1,0 +1,6 @@
+CHECK LIST
+1.Add an item to the shopping  cart
+2.Remove an added item from the shopping  cart
+3.Checkout -positive test
+4.Checkout without entering last name
+5.Checkout without entering zip/postal code
