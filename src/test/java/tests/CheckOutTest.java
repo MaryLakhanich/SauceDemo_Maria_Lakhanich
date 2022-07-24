@@ -4,7 +4,7 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 
 public class CheckOutTest extends BaseTest{
-    @Test
+    @Test(description = "log in, add an item into the shopping cart and buy it",groups = {"regression"})
     public void positiveCheckoutTest(){
         loginPage.login(USERNAME,PASSWORD);
         productsPage.openItemByName(PRODUCT_NAME);
@@ -21,7 +21,7 @@ public class CheckOutTest extends BaseTest{
         checkoutPage.clickFinishButton();
         Assert.assertTrue(checkoutPage.isFinalCheckOutMessageDisplayed(),"There's no final message");
     }
-    @Test
+    @Test (description = "log in, add an item into the shopping cart and try to check out without entering a zip code",groups = {"negative"})
     public void negativeCheckoutTestWithoutZipCode (){
         loginPage.login(USERNAME,PASSWORD);
         productsPage.openItemByName(PRODUCT_NAME);
@@ -36,7 +36,7 @@ public class CheckOutTest extends BaseTest{
         Assert.assertTrue(checkoutPage.isСheckoutErrorMessageDisplayed(), "There's no error message");
         Assert.assertEquals(checkoutPage.getCheckoutErrorMessageText(), "Error: Postal Code is required");
     }
-    @Test
+    @Test(description = "log in, add an item into the shopping cart and try to check out without entering last name",groups = {"negative"})
     public void negativeCheckoutTestWithoutLastName(){
         loginPage.login(USERNAME,PASSWORD);
         productsPage.openItemByName(PRODUCT_NAME);

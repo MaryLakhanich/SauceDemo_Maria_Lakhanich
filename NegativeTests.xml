@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="NegativeTests Tests" parallel="classes" thread-count="2">
+    <test name="Negative Tests">
+        <parameter name="browser" value="edge"></parameter>
+        <groups>
+            <define name="negative"></define>
+            <run>
+                <include name="negative"/>
+            </run>
+        </groups>
+        <packages>
+            <package name="tests"></package>
+        </packages>
+    </test>
+</suite>
