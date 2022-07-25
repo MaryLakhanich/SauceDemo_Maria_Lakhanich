@@ -23,7 +23,7 @@ public class ItemDetailsPage extends HomePage {
         driver.findElement(backToProductsButton).click();
     }
 
-    public void clickShoppingCartButton (){
+    public void clickShoppingCartButton() {
         driver.findElement(shoppingCartButton).click();
     }
 

@@ -1,17 +1,21 @@
 package tests;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.testng.annotations.AfterClass;
-import org.testng.annotations.BeforeClass;
-import org.testng.annotations.BeforeMethod;
+import org.openqa.selenium.edge.EdgeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.testng.ITestContext;
+import org.testng.annotations.*;
 import pages.*;
 
 import java.util.concurrent.TimeUnit;
 
+@Listeners(TestListener.class)
 public abstract class BaseTest {
     protected WebDriver driver;
+
 
     public BaseTest() {
     }
@@ -30,10 +34,18 @@ public abstract class BaseTest {
     protected final static String LASTNAME = "Petrova";
     protected final static String ZIPCODE = "11111";
 
-    @BeforeClass
-    public void initialise() {
-        WebDriverManager.chromedriver().setup();
-        this.driver = new ChromeDriver();
+    @Parameters({"browser"})
+    @BeforeClass(alwaysRun = true)
+    public void initialise(@Optional("chrome") String browserName, ITestContext testContext) throws Exception{
+        if (browserName.equals("chrome")) {
+            WebDriverManager.chromedriver().setup();
+            driver = new ChromeDriver();
+        } else if (browserName.equals("edge")) {
+            WebDriverManager.edgedriver().setup();
+            driver = new EdgeDriver();
+        } else {
+            throw new Exception("Undefined browser type");
+        }
         this.driver.manage().timeouts().implicitlyWait(5L, TimeUnit.SECONDS);
         loginPage = new LoginPage(driver);
         productsPage = new ProductsPage(driver);
@@ -43,13 +55,19 @@ public abstract class BaseTest {
 
     }
 
-    @AfterClass
+    @AfterClass(alwaysRun = true)
     public void finish() {
         this.driver.quit();
     }
 
-    @BeforeMethod
+    @BeforeMethod(alwaysRun = true)
     public void navigate() {
         this.driver.get("https://www.saucedemo.com/");
+    }
+    @AfterMethod(alwaysRun = true)
+    public void clearCookies() {
+        driver.manage().deleteAllCookies();
+        ((JavascriptExecutor) driver).executeScript(String.format("window.localStorage.clear();"));
+        ((JavascriptExecutor) driver).executeScript(String.format("window.sessionStorage.clear();"));
     }
 }
