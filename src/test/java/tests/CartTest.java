@@ -8,7 +8,7 @@ import java.util.concurrent.TimeUnit;
 public class CartTest extends BaseTest {
 
     @Test(description = "log in and add an item into the shopping cart",groups = {"regression"})
-    public void AddItemToCartTest() {
+    public void addItemToCartTest() {
         loginPage.login(USERNAME, PASSWORD);
         productsPage.openItemByName(PRODUCT_NAME);
         itemDetailsPage.clickAddToCartButton();
@@ -18,7 +18,7 @@ public class CartTest extends BaseTest {
     }
 
     @Test(description = "log in, add an item into the shopping cart and then remove it",groups = "smoke")
-    public void RemoveItemFromCart() {
+    public void removeItemFromCart() {
         loginPage.login(USERNAME, PASSWORD);
         productsPage.openItemByName(PRODUCT_NAME);
         itemDetailsPage.clickAddToCartButton();
@@ -29,7 +29,7 @@ public class CartTest extends BaseTest {
     }
 
     @Test(description ="log in, add an item into the shopping cart and then return to the page with all products",groups = "smoke")
-    public void ContinueShoppingTest() {
+    public void continueShoppingTest() {
         loginPage.login(USERNAME, PASSWORD);
         productsPage.openItemByName(PRODUCT_NAME);
         itemDetailsPage.clickAddToCartButton();

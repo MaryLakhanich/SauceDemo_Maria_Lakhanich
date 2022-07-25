@@ -12,7 +12,6 @@ public class RedirectAboutPageTest extends BaseTest{
         Assert.assertTrue(productsPage.isProductsPageHeaderDisplayed());
         productsPage.clickMenuButton();
         productsPage.clickAboutButton();
-        driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
         Assert.assertEquals(driver.getCurrentUrl(),"https://saucelabs.com/");
     }
 }
