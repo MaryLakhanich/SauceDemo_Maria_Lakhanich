@@ -1,5 +1,6 @@
 package pages;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import tests.BaseTest;
@@ -19,12 +20,15 @@ public class CheckoutPage extends HomePage{
     public CheckoutPage(WebDriver driver) {
         super(driver);
     }
+    @Step("Setting first name")
     public void setFirstName(String firstName){
         driver.findElement(firstNameInput).sendKeys(firstName);
     }
+    @Step("Setting last name")
     public void setLastName(String lastName){
         driver.findElement(lastNameInput).sendKeys(lastName);
     }
+    @Step("Setting zip code")
     public void setZipCodeInput(String zipCode){
         driver.findElement(zipCodeInput).sendKeys(zipCode);
     }

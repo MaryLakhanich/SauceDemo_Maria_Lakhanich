@@ -2,6 +2,7 @@ package tests;
 
 import org.testng.Assert;
 import org.testng.annotations.Test;
+import utils.AllureUtils;
 
 import java.util.concurrent.TimeUnit;
 
@@ -15,6 +16,7 @@ public class CartTest extends BaseTest {
         itemDetailsPage.clickShoppingCartButton();
         Assert.assertEquals(cartPage.getAddedToCartItemName(), PRODUCT_NAME);
         Assert.assertEquals(checkoutPage.getItemInTheCartPrice(), EXPECTED_ITEM_PRICE);
+        AllureUtils.attachScreenshot(driver);
     }
 
     @Test(description = "log in, add an item into the shopping cart and then remove it",groups = "smoke")

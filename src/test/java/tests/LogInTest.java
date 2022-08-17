@@ -26,7 +26,7 @@ public class LogInTest extends BaseTest {
         Assert.assertEquals(loginPage.getErrorMessageText(), "Epic sadface: Username is required", "");
     }
     @DataProvider
-    public Object[][]inputForLodInTest(){
+    public Object[][]inputForLogInTest(){
         return new Object[][]{
                 {"","secret_sauce","Epic sadface: Username is required"},
                 {"standard_user","","Epic sadface: Password is required"},
@@ -35,7 +35,7 @@ public class LogInTest extends BaseTest {
                 {"qwe","qaz","Epic sadface: Username and password do not match any user in this service"}
         };
     }
-    @Test(dataProvider = "inputForLodInTest",groups = {"negative"})
+    @Test(dataProvider = "inputForLogInTest",groups = {"negative"})
     public void negativeTests(String username, String password, String expectedErrorMessage){
         loginPage.setUserName(username);
         loginPage.setPassword(password);

@@ -16,8 +16,7 @@ public class CartPage extends HomePage {
     @FindBy(id = "checkout")
     WebElement checkoutButton;
 
-    //private By continueShoppingButton = new By.ById("continue-s
-    // hopping");
+    //private By continueShoppingButton = new By.ById("continue-shopping");
     @FindBy(id = "continue-shopping")
     WebElement continueShoppingButton;
 
